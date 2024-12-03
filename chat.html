@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat en Línea</title>
+    <!-- css-->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <h1 class="text-center text-success mb-4">Bienvenido al Chat en Línea</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="bg-dark text-light p-3 rounded">
+                    <h4>Usuarios Conectados</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-user-circle"></i> Usuario 1</li>
+                        <li><i class="fas fa-user-circle"></i> Usuario 2</li>
+                        <li><i class="fas fa-user-circle"></i> Usuario 3</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="bg-white p-4 rounded shadow-sm" id="chat-box" style="height: 400px; overflow-y: scroll;">
+                    <div class="message">
+                        <span class="text-primary"><strong>Usuario 1:</strong></span>
+                        <span>¡Hola! ¿Cómo estás?</span>
+                    </div>
+                    <div class="message">
+                        <span class="text-success"><strong>Usuario 2:</strong></span>
+                        <span>Muy bien, gracias. ¿Y tú?</span>
+                    </div>
+                </div>
+                <form class="mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="message-input" placeholder="Escribe un mensaje...">
+                        <button class="btn btn-success" type="button" id="send-button"><i class="fas fa-paper-plane"></i> Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('send-button').addEventListener('click', function () {
+            const messageInput = document.getElementById('message-input');
+            const chatBox = document.getElementById('chat-box');
+
+            if (messageInput.value.trim() !== "") {
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message';
+                newMessage.innerHTML = `<span class="text-success"><strong>Tú:</strong></span> <span>${messageInput.value}</span>`;
+                chatBox.appendChild(newMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                messageInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
